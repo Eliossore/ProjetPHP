@@ -17,6 +17,7 @@
     $table = "CD";
     if (isset($_SESSION['login']) && isset($_SESSION['pwd'])) {
         echo "<h1>Utilisateur: ".$_SESSION['login']."</h1>";
+        echo "<h1>Utilisateur: ".$_SESSION['login']."</h1>";
     }
     else{
         echo "<form action='identification.php' method='post'>";
@@ -25,16 +26,18 @@
     }
     echo "<a href='monPanier.php'>Panier</a>";
     // Connexion à la bdd
-    $bdd= "projet"; // Base de données
-    $host= "localhost";
-    $user= "kek"; // Utilisateur
-    $pass= "kek"; // mp
-    $nomtable= "CD"; /* Connection bdd */
+    $_SESSION['bdd']= "fsprocq_bd"; // Base de données
+    $_SESSION['host']= "lakartxela.iutbayonne.univ-pau.fr";
+    $_SESSION['user']= "fsprocq_bd"; // Utilisateur
+    $_SESSION['pass']= "fsprocq_bd"; // mp
+    $_SESSION['nomtable']= "CD"; /* Connection bdd */
 
-    $link=mysqli_connect($host,$user,$pass,$bdd) or die( "Impossible de se connecter à la base de données");
+    print "Tentative de connexion sur sitebd<br>";
+
+    $link=mysqli_connect($_SESSION['host'],$_SESSION['user'],$_SESSION['pass'],$_SESSION['bdd']) or die( "Impossible de se connecter à la base de données");
 
     // Afficher le contenu de la bdd
-    $query = "SELECT * FROM $nomtable";
+    $query = "SELECT * FROM ".$_SESSION['nomtable'];
 
     $resultats = mysqli_query($link, $query);
     mysqli_close($link);
@@ -42,7 +45,12 @@
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         exit();
        }
-
+    else 
+    {
+        echo "Connexion réussi <br>";
+    }
+       
+    echo "Résultats de la requête : <br>";
     while ($donnees = mysqli_fetch_assoc($resultats))
     {
         echo "<div class='Carte'>";
