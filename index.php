@@ -26,13 +26,11 @@
     }
     echo "<a href='monPanier.php'>Panier</a>";
     // Connexion à la bdd
-    $_SESSION['bdd']= "fsprocq_bd"; // Base de données
-    $_SESSION['host']= "lakartxela.iutbayonne.univ-pau.fr";
-    $_SESSION['user']= "fsprocq_bd"; // Utilisateur
-    $_SESSION['pass']= "fsprocq_bd"; // mp
+    $_SESSION['bdd']= "projet"; // Base de données
+    $_SESSION['host']= "localhost";
+    $_SESSION['user']= "kek"; // Utilisateur
+    $_SESSION['pass']= "kek"; // mp
     $_SESSION['nomtable']= "CD"; /* Connection bdd */
-
-    print "Tentative de connexion sur sitebd<br>";
 
     $link=mysqli_connect($_SESSION['host'],$_SESSION['user'],$_SESSION['pass'],$_SESSION['bdd']) or die( "Impossible de se connecter à la base de données");
 
@@ -45,12 +43,7 @@
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         exit();
        }
-    else 
-    {
-        echo "Connexion réussi <br>";
-    }
-       
-    echo "Résultats de la requête : <br>";
+
     while ($donnees = mysqli_fetch_assoc($resultats))
     {
         echo "<div class='Carte'>";
