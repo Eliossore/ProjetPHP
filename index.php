@@ -17,7 +17,6 @@
     $table = "CD";
     if (isset($_SESSION['login']) && isset($_SESSION['pwd'])) {
         echo "<h1>Utilisateur: ".$_SESSION['login']."</h1>";
-        echo "<h1>Utilisateur: ".$_SESSION['login']."</h1>";
     }
     else{
         echo "<form action='identification.php' method='post'>";
