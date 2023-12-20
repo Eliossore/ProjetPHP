@@ -11,7 +11,7 @@ $db = new PDO(
 // ... (code existant pour l'affichage de l'en-tête)
 
 echo "<h2>Mon Panier</h2>";
-
+$_SESSION['PrixFinal'] = 0;
 if (isset($_SESSION['panier']) && count($_SESSION['panier']) > 0) {
     foreach ($_SESSION['panier'] as $titreCD => $quantite) {
         // Récupérez les détails du CD à partir de la base de données en utilisant le titre
@@ -28,13 +28,17 @@ if (isset($_SESSION['panier']) && count($_SESSION['panier']) > 0) {
             echo "<img src='".$cdDetails['pochette']."' alt='Pochette du CD'>";
             echo "<p>Quantité : ".$quantite."</p>"; // Affichage de la quantité
             echo "</div>";
+            $_SESSION['PrixFinal'] = $quantite * $cdDetails['prix'] + $_SESSION['PrixFinal'];
         } else {
             echo "Détails du CD non trouvés pour le titre : ".$titreCD;
         }
     }
+    echo "<form action='Payment.php' method='post'>";
+    echo "<p>Prix Final : ".$_SESSION['PrixFinal']."</p>";
+    echo "<input type='submit' value='Payer'>";
+    echo "</form>";
 } else {
     echo "Le panier est vide";
 }
 
-// ... (code existant pour l'affichage du pied de page)
 ?>
