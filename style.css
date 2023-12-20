@@ -1,0 +1,37 @@
+.carte {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: lightblue;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+  }
+  
+  .carte img {
+    width: 256px;
+    height: 256px;
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+    border-radius: 5px; /* Optional: Add border-radius to the image */
+  }
+  
+  .carte .texte {
+    flex: 1;
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+  
+  .carte h2 {
+    font-weight: bold;
+    margin: 0; /* Remove default margin to avoid extra space */
+  }
+  
+  .carte p {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .carte a {
+    display: block;
+    color: #333; /* Set your preferred link color */
+  }
+  
