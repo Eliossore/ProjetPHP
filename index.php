@@ -9,6 +9,11 @@
     </head>
 <BODY>
 <?php
+    $nombd = "projet";
+    $utilisateur = "root";
+    $mdp = "root";
+    $host = "localhost";
+    $table = "CD";
     if (isset($_SESSION['login']) && isset($_SESSION['pwd'])) {
         echo "<h1>Utilisateur: ".$_SESSION['login']."<h/1>";
     }
@@ -18,22 +23,40 @@
         echo "</form>";
     }
     echo "<a href='monPanier.php'>Panier</a>";
-    $db = new PDO(
-        'mysql:host=lakartxela;dbname=fsprocq_bd;charset=utf8',
-        'fsprocq_bd',
-        'fsprocq_bd'
-    );
-    $recipesStatement = $db->prepare('SELECT * FROM CD');
-    $recipesStatement->execute();
-    $recipes = $recipesStatement->fetchAll();
-    foreach ($recipes as $ligne)
+    // Connexion à la bdd
+    $bdd= "projet"; // Base de données
+    $host= "localhost";
+    $user= "kek"; // Utilisateur
+    $pass= "kek"; // mp
+    $nomtable= "CD"; /* Connection bdd */
+
+    print "Tentative de connexion sur sitebd<br>";
+
+    $link=mysqli_connect($host,$user,$pass,$bdd) or die( "Impossible de se connecter à la base de données");
+
+    // Afficher le contenu de la bdd
+    $query = "SELECT * FROM $nomtable";
+
+    $resultats = mysqli_query($link, $query);
+    mysqli_close($link);
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        exit();
+       }
+    else 
+    {
+        echo "Connexion réussi <br>";
+    }
+       
+    echo "Résultats de la requête : <br>";
+    while ($donnees = mysqli_fetch_assoc($resultats))
     {
         echo "<div>";
-        $pathImg = $ligne['pochette'];
-        echo "<h2>Le Titre : ".$ligne['titre']."</h2>";
-        echo "<p>Auteur : ".$ligne['auteur']."</p>";
+        $pathImg = $donnees['pochette'];
+        echo "<h2>Le Titre : ".$donnees['titre']."</h2>";
+        echo "<p>Auteur : ".$donnees['auteur']."</p>";
         echo "<img src='$pathImg' alt='Pochette du CD'>";
-        echo "<a href='PageCd.php?titre=".urlencode($ligne['titre'])."'>Voir les détails</a>"; 
+        echo "<a href='PageCd.php?titre=".urlencode($donnees['titre'])."'>Voir les détails</a>"; 
         echo "</div>";
     }
 ?>
