@@ -8,30 +8,63 @@
     margin-top: 2%;
   }
   
-  .carte img {
-    width: 256px;
-    height: 256px;
-    object-fit: cover; /* Maintain aspect ratio and cover container */
-    border-radius: 5px; /* Optional: Add border-radius to the image */
-  }
+.carte img {
+  width: 256px;
+  height: 256px;
+  object-fit: cover; /* Maintain aspect ratio and cover container */
+  border-radius: 5px; /* Optional: Add border-radius to the image */
+}
   
-  .carte .texte {
-    flex: 1;
-    margin-left: 10px; /* Adjust the margin as needed */
-  }
+.carte .texte {
+  flex: 1;
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+
+.carte h2 {
+  font-weight: bold;
+  margin: 0; /* Remove default margin to avoid extra space */
+}
   
-  .carte h2 {
-    font-weight: bold;
-    margin: 0; /* Remove default margin to avoid extra space */
-  }
-  
-  .carte p {
-    margin-top: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .carte a {
-    display: block;
-    color: #333; /* Set your preferred link color */
-  }
-  
+.carte p {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.carte a {
+  display: block;
+  color: #333; /* Set your preferred link color */
+}
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Reset some default styles for the <a> element */
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+/* Style the button to look like a button */
+.bouton-panier {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 25px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the cart icon inside the button */
+.icone-panier{
+  margin-right: 10px;
+  font-size: 1.2em; /* Increase the font size of the cart icon */
+}

@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
 <?php
 session_start(); // Démarrez la session au début de chaque fichier PHP
 
@@ -18,13 +21,14 @@ if (isset($_SESSION['panier']) && count($_SESSION['panier']) > 0) {
             $cdDetails = mysqli_fetch_assoc($resultats);
 
             if ($cdDetails) {
-                echo "<div>";
+                echo "<div class='Carte'>";
+                echo "<img src='" . $cdDetails['pochette'] . "' alt='Pochette du CD'>";
+                echo "<div class='texte'>";
                 echo "<h2>Le Titre : " . $cdDetails['titre'] . "</h2>";
                 echo "<p>Auteur : " . $cdDetails['auteur'] . "</p>";
                 echo "<p>Prix : " . $cdDetails['prix'] . "</p>";
-                echo "<img src='" . $cdDetails['pochette'] . "' alt='Pochette du CD'>";
                 echo "<p>Quantité : " . $quantite . "</p>"; // Affichage de la quantité
-                echo "</div>";
+                echo "</div> </div>";
                 $_SESSION['PrixFinal'] = $quantite * $cdDetails['prix'] + $_SESSION['PrixFinal'];
             } else {
                 echo "Détails du CD non trouvés pour le titre : " . $titreCD;

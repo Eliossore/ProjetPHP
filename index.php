@@ -6,9 +6,10 @@
     <head>
         <meta charset="UTF-8">
         <title>vente de CD</title>
-        <link rel="stylesheet" href="style.css">
+        <link type="text/css" rel="stylesheet" href="style.css">
     </head>
 <BODY>
+    <a href='monPanier.php' class='bouton-panier'><span class='icone-panier'>🛒</span>Panier</a>
 <?php
     if (isset($_SESSION['login']) && isset($_SESSION['pwd'])) {
         echo "<h1>Utilisateur: ".$_SESSION['login']."</h1>";
@@ -18,13 +19,12 @@
         echo "<input type='submit' value='Connexion'>";
         echo "</form>";
     }
-    echo "<a href='monPanier.php'>Panier</a>";
 
     // Connexion à la bdd
-    $_SESSION['bdd']= "fsprocq_bd"; // Base de données
-    $_SESSION['host']= "lakartxela.iutbayonne.univ-pau.fr";
-    $_SESSION['user']= "fsprocq_bd"; // Utilisateur
-    $_SESSION['pass']= "fsprocq_bd"; // mp
+    $_SESSION['bdd']= "projet"; // Base de données
+    $_SESSION['host']= "127.0.0.0";
+    $_SESSION['user']= "kek"; // Utilisateur
+    $_SESSION['pass']= "kek"; // mp
     $_SESSION['nomtable']= "CD"; /* Connection bdd */
 
     $link=mysqli_connect($_SESSION['host'],$_SESSION['user'],$_SESSION['pass'],$_SESSION['bdd']) or die( "Impossible de se connecter à la base de données");
@@ -37,7 +37,6 @@
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         exit();
      }
-     
     while ($donnees = mysqli_fetch_assoc($resultats))
     {
         echo "<div class='Carte'>";
