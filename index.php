@@ -17,7 +17,6 @@
     $table = "CD";
     if (isset($_SESSION['login']) && isset($_SESSION['pwd'])) {
         echo "<h1>Utilisateur: ".$_SESSION['login']."</h1>";
-        echo "<h1>Utilisateur: ".$_SESSION['login']."</h1>";
     }
     else{
         echo "<form action='identification.php' method='post'>";
@@ -25,11 +24,12 @@
         echo "</form>";
     }
     echo "<a href='monPanier.php'>Panier</a>";
+
     // Connexion à la bdd
-    $_SESSION['bdd']= "projet"; // Base de données
-    $_SESSION['host']= "localhost";
-    $_SESSION['user']= "kek"; // Utilisateur
-    $_SESSION['pass']= "kek"; // mp
+    $_SESSION['bdd']= "fsprocq_bd"; // Base de données
+    $_SESSION['host']= "lakartxela.iutbayonne.univ-pau.fr";
+    $_SESSION['user']= "fsprocq_bd"; // Utilisateur
+    $_SESSION['pass']= "fsprocq_bd"; // mp
     $_SESSION['nomtable']= "CD"; /* Connection bdd */
 
     $link=mysqli_connect($_SESSION['host'],$_SESSION['user'],$_SESSION['pass'],$_SESSION['bdd']) or die( "Impossible de se connecter à la base de données");
