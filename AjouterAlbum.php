@@ -18,10 +18,10 @@
     <input type="text" name="genre" required><br>
 
     <label for="prix">Prix :</label>
-    <input type="number" name="prix" step="0.01" required><br>
+    <input type="number" name="prix" step="1" required><br>
 
     <label for="pochette">Pochette :</label>
-    <input type=file name=pochette><br>
+    <input type=file name="pochette"><br>
 
     <input type="submit" value="Ajouter CD">
 </form>
