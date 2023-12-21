@@ -10,11 +10,6 @@
     </head>
 <BODY>
 <?php
-    $nombd = "projet";
-    $utilisateur = "root";
-    $mdp = "root";
-    $host = "localhost";
-    $table = "CD";
     if (isset($_SESSION['login']) && isset($_SESSION['pwd'])) {
         echo "<h1>Utilisateur: ".$_SESSION['login']."</h1>";
     }
@@ -36,14 +31,13 @@
 
     // Afficher le contenu de la bdd
     $query = "SELECT * FROM ".$_SESSION['nomtable'];
-
     $resultats = mysqli_query($link, $query);
     mysqli_close($link);
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         exit();
-       }
-
+     }
+     
     while ($donnees = mysqli_fetch_assoc($resultats))
     {
         echo "<div class='Carte'>";
@@ -56,6 +50,28 @@
         echo "</div>";
         echo "</div>";
     }
+
+    $link=mysqli_connect($_SESSION['host'],$_SESSION['user'],$_SESSION['pass'],$_SESSION['bdd']) or die( "Impossible de se connecter à la base de données");
+    $query = "SELECT * FROM Utilisateur WHERE Nom = '".$_SESSION['login']."'";
+    $resultats = mysqli_query($link, $query);
+    mysqli_close($link);
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        exit();
+     }
+    $AcceAdmin = mysqli_fetch_assoc($resultats);
+    if($AcceAdmin['Admin'] == true){
+        echo "<form action='AjouterAlbome.php' method='post'>";
+        echo "<input type='submit' value='Ajouter un albome'>";
+        echo "</form>";
+        echo "<form action='ModifierAlbome.php' method='post'>";
+        echo "<input type='submit' value='Modifier un albome'>";
+        echo "</form>";
+        echo "<form action='RetirerAlbome.php' method='post'>";
+        echo "<input type='submit' value='Retirer un albome'>";
+        echo "</form>";
+    }
+
 ?>
 
 
