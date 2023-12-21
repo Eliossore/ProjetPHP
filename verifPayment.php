@@ -10,16 +10,11 @@ session_start(); // Démarrez la session au début de chaque fichier PHP
         
         // Videz la variable de session panier
         unset($_SESSION['panier']);
-
-        // Redirigez vers la page principale (index.php) après quelques secondes
-        header("Location: index.php");
-        exit();
-    } else {
-        // Afficher un message d'erreur et rediriger vers la page Payment.php
-        echo "Erreur dans la saisie. Veuillez vérifier les informations fournies.";
         
-        // Redirigez vers la page Payment.php après quelques secondes
-        header("Location: Payment.php");
-        exit();
+        // Redirigez vers la page principale (index.php) après quelques secondes
+        echo '<meta http-equiv="refresh" content="0;URL=index.php">';
+    } else {
+        echo '<body onLoad="alert(\'Carte invalide réessayer\')">';
+        echo '<meta http-equiv="refresh" content="0;URL=Payment.php">';
     }
 ?>

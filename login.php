@@ -1,13 +1,15 @@
 <?php
-    // On définit un login et un mot de passe de base
-    $login_valide = "Fabien";
-    $pwd_valide = "tgSamuel";
+    session_start();
+    $link = mysqli_connect($_SESSION['host'], $_SESSION['user'], $_SESSION['pass'], $_SESSION['bdd']) or die("Impossible de se connecter à la base de données");
 
-    // on teste si nos variables sont définies
-    if (isset($_POST['login']) && isset($_POST['pwd'])) {
-        // on vérifie les informations saisies
+    $query = "SELECT Mdp FROM Utilisateur WHERE Nom = '" . $_POST['login'] . "'";
+    $resultats = mysqli_query($link, $query);
+
+    if ($resultats) {
+        $utilisateurDetails = mysqli_fetch_assoc($resultats);
+        $login_valide = $_POST['login'];
+        $pwd_valide = $utilisateurDetails['Mdp'];
         if ($login_valide == $_POST['login'] && $pwd_valide == $_POST['pwd']) {
-            session_start ();
             // on enregistre les paramètres de notre visiteur comme variables de session ($login et $pwd) (
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['pwd'] = $_POST['pwd'];
@@ -16,11 +18,12 @@
         }
         else {
             echo '<body onLoad="alert(\'Membre non reconnu...\')">';
-            // puis on le redirige vers la page d'accueil
-            echo '<meta http-equiv="refresh" content="0;URL=identification.html">';
+            echo '<meta http-equiv="refresh" content="0;URL=identification.php">';
         }
-    } 
-    else {
-        echo 'Les variables du formulaire ne sont pas déclarées.';
+        
+    } else {
+        echo '<body onLoad="alert(\'Membre non reconnu...\')">';
+        echo '<meta http-equiv="refresh" content="0;URL=identification.php">';
     }
+
 ?>
