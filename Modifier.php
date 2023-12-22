@@ -1,28 +1,22 @@
 <?php
-session_start(); // Démarrage de la session
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // On récupére les données du formulaire
-
-    $repertoire = "image/";
-    $nomvar = $_FILES['pochette'];
-    $repertoire = $repertoire . basename($nomvar['name']);
-    move_uploaded_file($nomvar['tmp_name'], $repertoire);
-
-    echo "$repertoire <br><br>";
-
+    // Récupérer les données du formulaire
     $titre = isset($_POST['titre']) ? $_POST['titre'] : '';
     $auteur = isset($_POST['auteur']) ? $_POST['auteur'] : '';
     $genre = isset($_POST['genre']) ? $_POST['genre'] : '';
     $prix = isset($_POST['prix']) ? $_POST['prix'] : 0;
-    $pochette = isset($repertoire) ? $repertoire : '';
+
+
 
     $link = mysqli_connect($_SESSION['host'], $_SESSION['user'], $_SESSION['pass'], $_SESSION['bdd']) or die("Impossible de se connecter à la base de données");
 
-    $sql = "INSERT INTO CD (titre, auteur, genre, prix, pochette) VALUES ('$titre', '$auteur', '$genre', $prix, '$pochette')";
+    // Mettre à jour les données du CD dans la base de données
+    $sql = "UPDATE CD SET auteur='$auteur', genre='$genre', prix=$prix WHERE titre='$titre'";
 
     if (mysqli_query($link, $sql)) {
-        echo "Nouveau CD insérer correctement";
+        echo "CD modifié correctement";
     } else {
         echo "Erreur: " . $sql . "<br>" . mysqli_error($link);
     }
@@ -30,4 +24,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_close($link);
     echo '<meta http-equiv="refresh" content="0;URL=index.php">';
 }
+
 ?>

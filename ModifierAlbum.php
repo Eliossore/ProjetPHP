@@ -7,7 +7,8 @@
 <body>
 
 <h2>Ajouter un CD</h2>
-<form action="Ajouter.php" method="post" enctype="multipart/form-data">
+<h3>Remplir les champs a modifier</h3>
+<form action="Modifier.php" method="post" enctype="multipart/form-data">
     <label for="titre">Titre :</label>
     <input type="text" name="titre" required><br>
 
@@ -20,10 +21,7 @@
     <label for="prix">Prix :</label>
     <input type="number" name="prix" step="1" required><br>
 
-    <label for="pochette">Pochette :</label>
-    <input type=file name="pochette"><br>
-
-    <input type="submit" value="Ajouter CD">
+    <input type="submit" value="Modifier CD">
 </form>
 
 </body>

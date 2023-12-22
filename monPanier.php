@@ -1,8 +1,11 @@
+<?php
+session_start(); // Démarrez la session au début de chaque fichier PHP
+?>
+
 <head>
     <link rel="stylesheet" href="style.css">
 </head>
 <?php
-session_start(); // Démarrez la session au début de chaque fichier PHP
 
 $link = mysqli_connect($_SESSION['host'], $_SESSION['user'], $_SESSION['pass'], $_SESSION['bdd']) or die("Impossible de se connecter à la base de données");
 
